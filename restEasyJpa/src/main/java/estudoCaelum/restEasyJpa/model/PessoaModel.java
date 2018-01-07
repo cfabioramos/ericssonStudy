@@ -2,11 +2,15 @@ package estudoCaelum.restEasyJpa.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @XmlRootElement
 public class PessoaModel {
-
+	
 	private Long id;
+	@NotEmpty
 	private String nome;
+	@NotEmpty
 	private String sobreNome;
 
 	public Long getId() {

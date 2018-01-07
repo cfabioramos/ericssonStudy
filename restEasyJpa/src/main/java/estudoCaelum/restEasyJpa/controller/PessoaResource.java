@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import estudoCaelum.restEasyJpa.model.ErroModel;
 import estudoCaelum.restEasyJpa.model.PessoaModel;
 import estudoCaelum.restEasyJpa.service.PessoaService;
 
@@ -62,7 +64,15 @@ public class PessoaResource {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response insert(PessoaModel model) throws URISyntaxException{
+	@Produces("application/json")
+	public Response insert(@Valid PessoaModel model) throws URISyntaxException{
+		
+		if (model.getNome().equals("Jesus")) {
+			return Response.status(Response.Status.BAD_REQUEST)
+					.entity(new ErroModel("Este nome não é permitido"))
+					.type(MediaType.APPLICATION_JSON_TYPE)
+					.build();
+		}
 		
 		model = service.insert(model);
 		
