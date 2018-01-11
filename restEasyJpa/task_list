@@ -1,4 +1,11 @@
+##
+# Favor não apagar nada aqui.
+# Serve como histórico.
+##
 Validations
 Session Scope
 Secutity
 Error Handler
+Async
+Remoting
+Interceptor
